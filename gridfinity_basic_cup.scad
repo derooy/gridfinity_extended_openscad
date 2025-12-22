@@ -293,25 +293,27 @@ module end_of_customizer_opts() {}
 /*<!!end gridfinity_basic_cup!!>*/
 
 //Some online generators do not like direct setting of fa,fs,fn
-$fa = fa; 
-$fs = fs; 
-$fn = fn;  
+$fa = fa;
+$fs = fs;
+$fn = fn;
 
-set_environment(
-  width = width,
-  depth = depth,
-  height = height,
-  height_includes_lip = height_includes_lip,
-  lip_enabled = lip_style != "none",
-  render_position = render_position,
-  help = enable_help,
-  pitch = pitch,
-  clearance = clearance,
-  cut = cut,
-  setColour = set_colour,
-  randomSeed = random_seed,
-  force_render = force_render)
-gridfinity_cup(
+for (_part = ["body", "lip"]) {
+  $render_part = _part;
+  set_environment(
+    width = width,
+    depth = depth,
+    height = height,
+    height_includes_lip = height_includes_lip,
+    lip_enabled = lip_style != "none",
+    render_position = render_position,
+    help = enable_help,
+    pitch = pitch,
+    clearance = clearance,
+    cut = cut,
+    setColour = set_colour,
+    randomSeed = random_seed,
+    force_render = force_render)
+  gridfinity_cup(
   filled_in=filled_in,
   label_settings=LabelSettings(
     labelStyle=label_style, 
@@ -446,3 +448,4 @@ gridfinity_cup(
     baseTextFont = text_font,
     baseTextDepth = text_depth,
     baseTextOffset = text_offset));
+}

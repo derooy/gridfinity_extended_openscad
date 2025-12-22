@@ -43,9 +43,9 @@ if(show_gridfinity_demo){
 // start with this and begin 'carving'
 //grid_block();
 module grid_block(
-  num_x=1, 
-  num_y=2, 
-  num_z=2, 
+  num_x=1,
+  num_y=2,
+  num_z=2,
   position = "zero",
   filledin = "disabled", //[disabled, enabled, enabledfilllip]
   wall_thickness = 1.2,
@@ -53,6 +53,8 @@ module grid_block(
   lip_settings = LipSettings(),
   help)
 {
+  _render_part = is_undef($render_part) ? "all" : $render_part;
+
   lipHeight = 3.75;
 
   assert_openscad_version();
@@ -76,18 +78,19 @@ module grid_block(
   overhang_fix = hole_overhang_remedy > 0 && magnet_size[iCylinderDimension_Diameter] > 0 && screw_size[iCylinderDimension_Diameter] > 0 ? hole_overhang_remedy : 0;
   overhang_fix_depth = 0.3;  // assume this is enough
   
+  if(_render_part == "all" || _render_part == "lip")
   tz(env_pitch().z*num_z-fudgeFactor*2)
   if(filledin == "enabledfilllip"){
     color(env_colour(color_topcavity))
       tz(-fudgeFactor)
-      hull() 
-      cornercopy(block_corner_position, num_x, num_y) 
+      hull()
+      cornercopy(block_corner_position, num_x, num_y)
       cylinder(r=env_corner_radius(), h=lipHeight);
   } else {
-    
+
     cupLip(
-      num_x = num_x, 
-      num_y = num_y, 
+      num_x = num_x,
+      num_y = num_y,
       lipStyle = lip_settings[iLipStyle],
       wall_thickness = wall_thickness,
       lip_notches = lip_settings[iLipNotch],
@@ -97,7 +100,8 @@ module grid_block(
       lip_non_blocking = lip_settings[iLipNonBlocking],
       align_grid = cupBase_settings[iCupBase_AlignGrid]);
   }
-  
+
+  if(_render_part == "all" || _render_part == "body")
   translate(gridfinityRenderPosition(position,num_x,num_y))
   difference() {
     baseHeight = 5;
