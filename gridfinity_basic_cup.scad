@@ -16,9 +16,9 @@ use <modules/module_gridfinity_block.scad>
 // X dimension. grid units (multiples of 42mm) or mm.
 width = [2, 0]; //0.1
 // Y dimension. grid units (multiples of 42mm) or mm.
-depth = [1, 0]; //0.1
+depth = [5, 0]; //0.1
 // Z dimension excluding. grid units (multiples of 7mm) or mm.
-height = [3, 0]; //0.1
+height = [8, 0]; //0.1
 // Fill in solid block (overrides all following options)
 filled_in = "disabled"; //[disabled, enabled, enabledfilllip:"Fill cup and lip"]
 // Wall thickness of outer walls. default, height < 8 0.95, height < 16 1.2, height > 16 1.6 (Zack's design is 0.95 mm)
@@ -117,7 +117,7 @@ label_style = "disabled"; //[disabled: no label, normal:normal, gflabel:gflabel 
 // Include overhang for labeling (and specify left/right/center justification)
 label_position = "left"; // [left, right, center, leftchamber, rightchamber, centerchamber]
 // Width, Depth, Height, Radius. Width in Gridfinity units of 42mm, Depth and Height in mm, radius in mm. Width of 0 uses full width. Height of 0 uses Depth, height of -1 uses depth*3/4. 
-label_size = [0,14,0,0.6]; // 0.01
+label_size = [1,14,0,0.6]; // 0.01
 // Size in mm of relief where appropriate. Width, depth, height, radius
 label_relief = [0,0,0,0.6]; // 0.1
 // wall to enable on, front, back, left, right. 0: disabled; 1: enabled;
